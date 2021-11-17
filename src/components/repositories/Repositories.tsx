@@ -1,18 +1,20 @@
 import { useQuery } from 'react-query'
+import { useRecoilState, useRecoilValue } from 'recoil'
+
+import { repos as reposAtom, view as viewAtom } from '../../atoms'
 import Repo from '../repo/Repo'
 
-const fetchRepos = async () => {
-  const url =
-    'https://api.github.com/users/laurapoc/repos?since=2020-12-01T09:07:21.20-07:00'
-  const res = await fetch(url)
+const Repositories = () => {
+  const [repos, setRepos] = useRecoilState(reposAtom)
+  const view = useRecoilValue(viewAtom)
 
-  return res.json()
-}
+  const { data, status } = useQuery('repos', () =>
+    fetch(`https://api.github.com/users/laurapoc/repos?since=${view}`).then(
+      (res) => res.json().then((data) => setRepos(data))
+    )
+  )
 
-const Repos = () => {
-  const { data, status } = useQuery('repos', fetchRepos)
-
-  console.log(data, status)
+  console.log(repos)
 
   return (
     <div>
@@ -20,9 +22,9 @@ const Repos = () => {
         ? 'Error fetching data'
         : status === 'loading'
         ? 'loading'
-        : data.map((repo: any) => <Repo key={repo.id} repo={repo} />)}
+        : repos.map((repo: any) => <Repo key={repo.id} repo={repo} />)}
     </div>
   )
 }
 
-export default Repos
+export default Repositories
