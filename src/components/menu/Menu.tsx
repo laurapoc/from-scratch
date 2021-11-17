@@ -1,6 +1,7 @@
 import { useRecoilState } from 'recoil'
 
 import { view as viewAtom } from '../../atoms'
+import { formatDate } from '../../helpers/constants'
 
 const Menu = () => {
   const viewOptions = [
@@ -11,14 +12,14 @@ const Menu = () => {
   const [view, setView] = useRecoilState(viewAtom)
 
   return (
-    <nav className="menu">
+    <nav className="menu" style={{ textAlign: 'center' }}>
       {viewOptions.map((date) => (
         <button
           style={{ margin: '2%' }}
           onClick={() => setView(date)}
           key={date}
         >
-          Repos from {date}
+          Repos from {formatDate(date)}
         </button>
       ))}
     </nav>
