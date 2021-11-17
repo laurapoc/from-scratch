@@ -16,11 +16,8 @@ const Repositories = () => {
     const body = await resp.json()
     setRepos(body)
   }
+  /* eslint-disable */
   const { data } = useQuery(['repos', view], () => fetchRepos())
-
-    getRepos()
-  }, [setRepos, view])
-
 
   return (
     <div>
