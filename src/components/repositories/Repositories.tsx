@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query'
+import Repo from '../repo/Repo'
 
 const fetchRepos = async () => {
   const url =
@@ -19,11 +20,7 @@ const Repos = () => {
         ? 'Error fetching data'
         : status === 'loading'
         ? 'loading'
-        : data.map((d: any) => (
-            <div key={d.id}>
-              <p>{d.name}</p>
-            </div>
-          ))}
+        : data.map((repo: any) => <Repo key={repo.id} repo={repo} />)}
     </div>
   )
 }

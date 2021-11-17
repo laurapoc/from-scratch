@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import Repos from './components/Repos'
+import Repositories from './components/repositories/Repositories'
 
 const queryClient = new QueryClient()
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Repos />
+      <Repositories />
     </QueryClientProvider>
   )
 }
