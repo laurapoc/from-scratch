@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
-import { repos as reposAtom, view as viewAtom } from '../../atoms'
 import Repo from '../repo/Repo'
+
+import { repos as reposAtom, view as viewAtom } from '../../atoms'
 
 const Repositories = () => {
   const [repos, setRepos] = useRecoilState(reposAtom)
@@ -18,8 +19,6 @@ const Repositories = () => {
 
     getRepos()
   }, [setRepos, view])
-
-  console.log(repos)
 
   return (
     <div>

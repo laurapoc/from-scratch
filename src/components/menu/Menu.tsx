@@ -15,7 +15,6 @@ const Menu = () => {
       {viewOptions.map((date) => (
         <button
           style={{ margin: '2%' }}
-          // className={`menu-item ${view === v ? "text-bold" : ""}`}
           onClick={() => setView(date)}
           key={date}
         >

@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
+
 import Menu from './components/menu/Menu'
 import Repositories from './components/repositories/Repositories'
 
