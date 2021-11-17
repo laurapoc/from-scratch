@@ -21,6 +21,8 @@ module.exports = {
   },
   rules: {
     "no-use-before-define": "off",
+    "react/react-in-jsx-scope": "off",
+    "indent": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
   },
 };
