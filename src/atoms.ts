@@ -7,5 +7,5 @@ export const repos = atom({
   
   export const view = atom({
     key: "view",
-    default: "2020-12-01T09:07:21.20-07:00",
+    default: "2018-12-01T09:07:21.20-07:00",
   });
