@@ -9,6 +9,7 @@ const Menu = () => {
     '2021-02-01T09:07:21.20-07:00',
     '2021-05-01T09:07:21.20-07:00'
   ]
+  /* eslint-disable */
   const [view, setView] = useRecoilState(viewAtom)
 
   return (
