@@ -19,16 +19,15 @@ const Repositories = () => {
     const body = await resp.json()
     setRepos(body)
   }
-  /* eslint-disable */
-  const { data, status } = useQuery(['repos', view], () =>
+  const { status } = useQuery(['repos', view], () =>
     fetchRepos('repos', view)
   )
 
   return (
     <div>
       <h4>Repositories since {date}</h4>
-      {status === 'loading' && <div>'Loading data...'</div>}
-      {status === 'error' && <div>'Error fetching data...'</div>}
+      {status === 'loading' && <div>Loading data...</div>}
+      {status === 'error' && <div>Error fetching data...</div>}
       {repos.map((repo: any) => (
         <Repo key={repo.id} repo={repo} />
       ))}
