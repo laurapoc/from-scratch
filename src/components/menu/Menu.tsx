@@ -19,7 +19,7 @@ const Menu = () => {
           onClick={() => setView(date)}
           key={date}
         >
-          Repos from {formatDate(date)}
+          Repos since {formatDate(date)}
         </button>
       ))}
     </nav>

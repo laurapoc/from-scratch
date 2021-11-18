@@ -12,15 +12,15 @@ const Repositories = () => {
 
   const date = formatDate(view)
 
-  const fetchRepos = async () => {
+  const fetchRepos = async (key: string, date: string) => {
     const resp = await fetch(
-      `https://api.github.com/users/laurapoc/repos?since=${view}`
+      `https://api.github.com/users/laurapoc/repos?since=${date}`
     )
     const body = await resp.json()
     setRepos(body)
   }
   /* eslint-disable */
-  const { data } = useQuery(['repos', view], () => fetchRepos())
+  const { data } = useQuery(['repos', view], () => fetchRepos('repos', view))
 
   return (
     <div>
