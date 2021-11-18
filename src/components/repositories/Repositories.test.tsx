@@ -29,7 +29,7 @@ describe('<Repositories />', () => {
     )
   })
 
-  it('fetches repositories', async () => {
+  it('calls the fetch method as expected', async () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(fakeRepositories)
