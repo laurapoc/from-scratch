@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import Gallery from './components/gallery/Gallery'
 
 import Menu from './components/menu/Menu'
 import Repositories from './components/repositories/Repositories'
@@ -12,14 +13,14 @@ const queryClient = new QueryClient()
 
 const App = () => {
   const contextCValue = useContext(galleryPageContext)
-  const [value, setValue] = useState(contextCValue)
+  const [page, setPage] = useState(contextCValue)
 
   return (
     <>
-      <galleryPageContext.Provider value={[value, setValue]}>
+      <galleryPageContext.Provider value={[page, setPage]}>
         <Menu />
         <QueryClientProvider client={queryClient}>
-          {value !== 0 ? <p>pageContext value: {value}</p> : <Repositories />}
+          {page !== 0 ? <Gallery /> : <Repositories />}
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </galleryPageContext.Provider>

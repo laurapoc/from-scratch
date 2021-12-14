@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import { view as viewAtom } from '../../atoms'
-import { formatDate } from '../../helpers/constants'
+import { formatDate } from '../../utils/constants'
 import { galleryPageContext } from '../../shared/contexts'
 
 const Menu = () => {
@@ -14,12 +14,19 @@ const Menu = () => {
   /* eslint-disable */
   const [view, setView] = useRecoilState(viewAtom)
 
-  let [value, setValue] = useContext(galleryPageContext)
-  console.log(value)
+  const [page, setPage] = useContext(galleryPageContext)
 
-  const onImageButtonClick = () => {
-    setValue((val: number) => val + 1)
-    console.log(value)
+  const onImageUpButtonClick = () => {
+    setPage((val: number) => val + 1)
+  }
+  const onImageDownButtonClick = () => {
+    page > 0 && setPage((val: number) => val - 1)
+    // setPage((val: number) => val - 1)
+  }
+
+  const onDateButtonClick = (date: string) => {
+    setPage(0)
+    setView(date)
   }
 
   return (
@@ -27,15 +34,34 @@ const Menu = () => {
       {viewOptions.map((date) => (
         <button
           style={{ margin: '2%' }}
-          onClick={() => setView(date)}
+          onClick={() => onDateButtonClick(date)}
           key={date}
         >
           Repos since {formatDate(date)}
         </button>
       ))}
-      <button onClick={onImageButtonClick}>
-        Show Flickr images {value} page
-      </button>
+      <div>
+        <h4>Images from Flickr.com:</h4>
+        {page === 0 && (
+          <button onClick={onImageUpButtonClick} style={{ margin: '2%' }}>
+            Show images
+          </button>
+        )}
+
+        {page > 0 && (
+          <div>
+            <button onClick={onImageUpButtonClick} style={{ margin: '2%' }}>
+              Show next page
+            </button>
+            <button onClick={onImageDownButtonClick} style={{ margin: '2%' }}>
+              Show previous page
+            </button>
+            <p>
+              <strong>page {page}</strong>
+            </p>
+          </div>
+        )}
+      </div>
     </nav>
   )
 }

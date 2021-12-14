@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import Repo from '../repo/Repo'
 
 import { repos as reposAtom, view as viewAtom } from '../../atoms'
-import { formatDate } from '../../helpers/constants'
+import { formatDate } from '../../utils/constants'
 
 const Repositories = () => {
   const [repos, setRepos] = useRecoilState(reposAtom)
@@ -19,9 +19,7 @@ const Repositories = () => {
     const body = await resp.json()
     setRepos(body)
   }
-  const { status } = useQuery(['repos', view], () =>
-    fetchRepos('repos', view)
-  )
+  const { status } = useQuery(['repos', view], () => fetchRepos('repos', view))
 
   return (
     <div>
