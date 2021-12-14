@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 import Menu from './components/menu/Menu'
 import Repositories from './components/repositories/Repositories'
@@ -11,6 +12,7 @@ const App = () => {
       <Menu />
       <QueryClientProvider client={queryClient}>
         <Repositories />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
   )
