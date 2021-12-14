@@ -1,7 +1,9 @@
+import { useContext, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import { view as viewAtom } from '../../atoms'
 import { formatDate } from '../../helpers/constants'
+import { galleryPageContext } from '../../shared/contexts'
 
 const Menu = () => {
   const viewOptions = [
@@ -11,6 +13,14 @@ const Menu = () => {
   ]
   /* eslint-disable */
   const [view, setView] = useRecoilState(viewAtom)
+
+  let [value, setValue] = useContext(galleryPageContext)
+  console.log(value)
+
+  const onImageButtonClick = () => {
+    setValue((val: number) => val + 1)
+    console.log(value)
+  }
 
   return (
     <nav className="menu" style={{ textAlign: 'center' }}>
@@ -23,6 +33,9 @@ const Menu = () => {
           Repos since {formatDate(date)}
         </button>
       ))}
+      <button onClick={onImageButtonClick}>
+        Show Flickr images {value} page
+      </button>
     </nav>
   )
 }
